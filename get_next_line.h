@@ -6,7 +6,7 @@
 /*   By: abouabba <abouabba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 20:08:20 by abouabba          #+#    #+#             */
-/*   Updated: 2024/12/05 23:56:40 by abouabba         ###   ########.fr       */
+/*   Updated: 2024/12/07 19:18:34 by abouabba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,13 @@
 #include <limits.h>
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1
+# define BUFFER_SIZE 2
 #endif
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);
 char	*ft_strchr(const char *s, int c);
-char	*ft_strjoin(char const *s1, char const *s2);
-void	*ft_memcpy(void *dst, const void *src, size_t n);
-
+char	*ft_strjoin(char *s1, char *s2);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: abouabba <abouabba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:24:10 by abouabba          #+#    #+#             */
-/*   Updated: 2024/12/06 11:51:59 by abouabba         ###   ########.fr       */
+/*   Updated: 2024/12/07 19:46:30 by abouabba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ size_t	ft_strlen(const char *s)
 }
 char	*ft_strdup(const char *s1)
 {
-	int		i;
+	size_t	i;
 	char	*s2;
 
 	i = 0;
@@ -43,6 +43,8 @@ char	*ft_strchr(const char *s, int c)
 	int	i;
 
 	i = 0;
+	if (!s)
+		return(NULL);
 	while (s[i])
 	{
 		if (s[i] == (char)c)
@@ -53,7 +55,7 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)s + i);
 	return (NULL);
 }
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	int		i;
 	int		j;
@@ -61,16 +63,16 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = 0;
 	j = 0;
-	if (!s1 && !s2)
-		return (NULL);
 	if (!s1)
 		return (ft_strdup(s2));
 	if (!s2)
 		return (ft_strdup(s1));
-	s_everyone
-		= (char *)malloc(sizeof(char) * ((ft_strlen(s1) + ft_strlen(s2)) + 1));
+	s_everyone = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!s_everyone)
+	{
+		free(s1);
 		return (NULL);
+	}
 	while (s1[i])
 	{
 		s_everyone[i] = s1[i];
@@ -79,24 +81,22 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	while (s2[j])
 		s_everyone[i++] = s2[j++];
 	s_everyone[i] = '\0';
-	return (s_everyone);
+	return (free(s1), s_everyone);
 }
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+char	*ft_strncpy(char *dst, const char *src, size_t n)
 {
-	size_t			i;
-	char			*s;
-	char			*d;
+	size_t		i;
 
 	i = 0;
-	if (dst == src)
-		return (dst);
-	s = (char *)src;
-	d = (char *)dst;
-	while (i < n)
+	while (i < n && src[i])
 	{
-		d[i] = s[i];
+		dst[i] = src[i];
 		i++;
 	}
-	d[i] = '\0';
+	while (i < n)
+	{
+		dst[i] = '\0';
+		i++;
+	}
 	return (dst);
 }
