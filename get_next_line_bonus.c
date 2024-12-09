@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abouabba <abouabba@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/06 17:57:38 by abouabba          #+#    #+#             */
-/*   Updated: 2024/12/09 11:56:54 by abouabba         ###   ########.fr       */
+/*   Created: 2024/12/09 11:01:37 by abouabba          #+#    #+#             */
+/*   Updated: 2024/12/09 11:17:39 by abouabba         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*check_read(int fd, char *buffer)
 {
@@ -86,15 +86,15 @@ char	*get_the_line(char *buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	*buffer[OPEN_MAX];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) < 0)
-		return (free(buffer), buffer = NULL, NULL);
-	buffer = check_read(fd, buffer);
-	if (!buffer || buffer[0] == '\0')
-		return (free(buffer), buffer = NULL, NULL);
-	line = get_the_line(buffer);
-	buffer = get_next(buffer);
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd >= OPEN_MAX || read(fd, NULL, 0) < 0)
+		return (free(buffer[fd]), buffer[fd] = NULL, NULL);
+	buffer[fd] = check_read(fd, buffer[fd]);
+	if (!buffer[fd] || buffer[fd][0] == '\0')
+		return (free(buffer[fd]), buffer[fd] = NULL, NULL);
+	line = get_the_line(buffer[fd]);
+	buffer[fd] = get_next(buffer[fd]);
 	return (line);
 }
