@@ -67,9 +67,7 @@ char	*get_the_line(char *buffer)
 	i = 0;
 	j = 0;
 	while (buffer[i] && (buffer[i] != '\n'))
-	{
 		i++;
-	}
 	retu = malloc(i + 2);
 	if (!retu)
 		return (NULL);
