@@ -86,3 +86,4 @@ char	*ft_strjoin(char *s1, char *s2)
 	s_everyone[i] = '\0';
 	return (free(s1), s_everyone);
 }
+   
