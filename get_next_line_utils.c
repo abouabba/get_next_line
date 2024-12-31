@@ -21,7 +21,7 @@ size_t	ft_strlen(char *s)
 		i++;
 	return (i);
 }
-
+   
 char	*ft_strdup(char *s1)
 {
 	size_t	i;
