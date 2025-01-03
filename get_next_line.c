@@ -25,7 +25,7 @@ char	*check_read(int fd, char *buffer)
 	while (1)
 	{
 		read_bytes = read(fd, temp, BUFFER_SIZE);
-		if (read_bytes <= 0)
+		if (read_bytes <= 0)   
 			break ;
 		temp[read_bytes] = '\0';
 		buffer = ft_strjoin(buffer, temp);
