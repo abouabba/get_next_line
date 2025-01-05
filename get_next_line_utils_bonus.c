@@ -74,13 +74,13 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!s_everyone)
 	{
 		free(s1);
-		return (NULL);
+		return (NULL); 
 	}
 	while (s1[i])
 	{
 		s_everyone[i] = s1[i];
 		i++;
-	}
+	} 
 	while (s2[j])
 		s_everyone[i++] = s2[j++];
 	s_everyone[i] = '\0';
